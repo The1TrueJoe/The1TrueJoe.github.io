@@ -50,7 +50,7 @@ export const info = {
     {
       title: "Self-Driving Golf Cart",
       isFeatured: true,
-      thumbnail: "/assets/images/astro-portfolio.png",
+      thumbnail: "/assets/images/cart4.jpg",
       githubUrl: "https://github.com/autogolfcart",
       liveUrl: "https://autogolfc.art",
     },
