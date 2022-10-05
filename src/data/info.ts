@@ -34,7 +34,7 @@ export const info = {
       startDate: "2020",
       endDate: "2022",
       description: [
-        "High School Diploma", "Concentration in Computer Science and Mathematics"
+        "High School Diploma", "Concentration in Computer Science and Mathematics", "Developed ENGIN 210 Projects course in catalog", "Founded the GSSM Golf Cart Project"
       ],
     },
   ],
