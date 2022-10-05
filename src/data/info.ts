@@ -41,8 +41,9 @@ export const info = {
 
   socialMedia: {
     github: "https://github.com/The1TrueJoe",
-    email: "jttelaak04@gmail.com",
+    email: "jtelaak@sc.edu",
     linkedin: "https://www.linkedin.com/in/jtelaak/",
+    resume: "/assets/docs/resume.pdf"
   },
 
   projects: [
