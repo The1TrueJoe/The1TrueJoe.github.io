@@ -11,7 +11,7 @@ export const info = {
       name: "GSSM Smart Golf Cart - Founder and Lead Engineer",
       location: "Hartsville, SC",
       startDate: "Jan 2022",
-      endDate: "Jun 2022",
+      endDate: "June 2022",
       description: [
         "- Lead a team of 6 students in developing both hardware and software for a fleet of self driving golf carts",
         "- We received over $50,000 in grants from Google, SC Department of Education, and the GSSM Foundation",
