@@ -15,11 +15,7 @@ export const info = {
       description: [
         "- Lead a team of 6 students in developing both hardware and software for a fleet of self driving golf carts",
         "- We received over $50,000 in grants from Google, SC Department of Education, and the GSSM Foundation",
-        "- I designed the control system hardware, which included completely custom embedded computer boards",
-        "\t- ARM-based Drive-By-Wire ECU with relays, stepper motor drivers, and CAN/IVN interfaces",
-        "\t- Nvidia Jetson carrier/ADAS computer with an integrated network switch and camera inputs",
-        "- I wrote the board firmware as well as the libraries to interface with them from the drive computer",
-        "- I helped write the fleet management system that is used to track and control the carts remotely",
+        "- I designed the control system hardware and software",
       ],
     },
     {
