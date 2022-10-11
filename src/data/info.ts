@@ -1,9 +1,10 @@
 export const info = {
   baseUrl: "https://astro-portfolio-uzair.vercel.app",
   name: "Joseph Telaak",
-  jobDescription: "Embedded Systems Engineer",
-  about: `I'm an embedded systems engineering and systems architect. I am also a computer engineering major at the University of South Carolina.
-  I enjoy designing robotics control systems, IoT gadgets, and building software systems. I especially enjoy combing all three into projects whenever I can, just like in my autonomous golf cart fleet project.`,
+  jobDescription: "Computer Engineering Major at UofSC",
+  about: `My interests include embedded systems and network systems architecture. 
+  I am currently working on multiple projects, but I am primarily working on my self driving golf cart.
+  Most of my projects involve combining robotics, embedded hardware, artificial intelligence, computer vision, IoT, and networking.`,
 
   experience: [
     {
