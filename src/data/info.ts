@@ -57,21 +57,21 @@ export const info = {
     },
     {
       title: "User Automation Botnet",
-      isFeatured: false,
+      isFeatured: true,
       thumbnail: "/assets/images/server.jpeg",
       githubUrl: "https://github.com/da2botnet",
       liveUrl: "https://da2.telaak.dev",
     },
     {
       title: "8 Bit Computer",
-      isFeatured: false,
+      isFeatured: true,
       thumbnail: "/assets/images/8bit.jpeg",
       githubUrl: "https://github.com/The1TrueJoe/8Bit-Computer",
       liveUrl: "https://telaak.dev/8Bit-Computer/",
     },
     {
       title: "ROV",
-      isFeatured: false,
+      isFeatured: true,
       thumbnail: "/assets/images/gssm.jpg",
       githubUrl: "https://github.com/The1TrueJoe/ROV",
       liveUrl: "https://telaak.dev/ROV/",
@@ -85,10 +85,11 @@ export const info = {
     },
     {
       title: "UofSC Schoolwork",
-      isFeatured: false,
+      isFeatured: true,
       thumbnail: "/assets/images/gssm.jpg",
       githubUrl: "https://github.com/The1TrueJoe/UofSC-Assignments",
       liveUrl: "https://usc.telaak.dev/",
     },
+    
   ],
 };
