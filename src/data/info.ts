@@ -55,7 +55,7 @@ export const info = {
       githubUrl: "https://github.com/autogolfcart",
       liveUrl: "https://autogolfc.art",
     },
-    {
+    /*{
       title: "User Automation Botnet",
       isFeatured: true,
       thumbnail: "/assets/images/server.jpeg",
@@ -76,6 +76,7 @@ export const info = {
       githubUrl: "https://github.com/The1TrueJoe/ROV",
       liveUrl: "https://telaak.dev/ROV/",
     },
+    */
     {
       title: "GSSM Schoolwork",
       isFeatured: true,
@@ -83,6 +84,7 @@ export const info = {
       githubUrl: "https://github.com/The1TrueJoe/SCGSSM-Assignments",
       liveUrl: "https://gssm.telaak.dev/",
     },
+    /*
     {
       title: "UofSC Schoolwork",
       isFeatured: true,
@@ -90,6 +92,7 @@ export const info = {
       githubUrl: "https://github.com/The1TrueJoe/UofSC-Assignments",
       liveUrl: "https://usc.telaak.dev/",
     },
+    */
     
   ],
 };
