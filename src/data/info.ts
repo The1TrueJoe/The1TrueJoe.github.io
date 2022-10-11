@@ -2,7 +2,7 @@ export const info = {
   baseUrl: "https://astro-portfolio-uzair.vercel.app",
   name: "Joseph Telaak",
   jobDescription: "Computer Engineering Major at UofSC",
-  about: `My interests include embedded systems and network systems architecture. 
+  about: `I am a Junior Computer Engineering Major at UofSC and a recent SCGSSM graduate. My interests include embedded systems and network systems architecture. 
   I am currently working on multiple projects, but I am primarily working on my self driving golf cart.
   Most of my projects involve combining robotics, embedded hardware, artificial intelligence, computer vision, IoT, and networking.`,
 
