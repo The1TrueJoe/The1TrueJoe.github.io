@@ -15,7 +15,7 @@ export const info = {
       description: [
         "- Lead a team of 6 students in developing both hardware and software for a fleet of self driving golf carts",
         "- We received over $50,000 in grants from Google, SC Department of Education, and the GSSM Foundation",
-        "- I designed the control system hardware and software",
+        "- I designed the control system hardware and software (See project page)",
       ],
     },
     {
@@ -38,7 +38,7 @@ export const info = {
       startDate: "2022",
       endDate: "2024",
       description: [
-        "B.S.E in Computer Engineering", "Minor in Mathematics and Physics",
+        "B.S.E in Computer Engineering", "Minor in Mathematics and Physics", "ACM Code-A-Thon winner", "Rocketry Club Avionics Designer"
       ],
     },
     {
@@ -47,7 +47,7 @@ export const info = {
       startDate: "2020",
       endDate: "2022",
       description: [
-        "High School Diploma", "Concentration in Computer Science and Mathematics", "Developed ENGIN 210 Projects course in catalog", "Founded the GSSM Golf Cart Project"
+        "High School Diploma", "Concentration in Computer Science and Mathematics", "Created ENGIN 210 Projects course", "Founded the GSSM Golf Cart Project", "Programming Captain of FTC Robotics Team", "SPARK! Computer Science and Robotics instructor", "SPARK! Python leader"
       ],
     },
   ],
@@ -89,6 +89,7 @@ export const info = {
       liveUrl: "https://telaak.dev/ROV/",
     },
     */
+   /*
     {
       title: "GSSM Schoolwork",
       isFeatured: true,
@@ -96,6 +97,7 @@ export const info = {
       githubUrl: "https://github.com/The1TrueJoe/SCGSSM-Assignments",
       liveUrl: "https://gssm.telaak.dev/",
     },
+    */
     /*
     {
       title: "UofSC Schoolwork",
