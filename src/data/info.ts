@@ -8,6 +8,17 @@ export const info = {
 
   experience: [
     {
+      name: "GSSM - Instructor",
+      location: "Hartsville, SC",
+      startDate: "Jan 2022",
+      endDate: "June 2022",
+      description: [
+        "- Tought the Engineering Projects interim course to over a dozen students",
+        "- Helped students with project managment, hardware design, and software development",
+        "- Some projects included a biogel printer, a patio structure, welding, and numerous robotics projects"
+      ],
+    },
+    {
       name: "GSSM Smart Golf Cart - Founder and Lead Engineer",
       location: "Hartsville, SC",
       startDate: "Jan 2022",
@@ -89,6 +100,7 @@ export const info = {
       liveUrl: "https://telaak.dev/ROV/",
     },
     */
+   /*
     {
       title: "GSSM Schoolwork",
       isFeatured: true,
@@ -96,6 +108,7 @@ export const info = {
       githubUrl: "https://github.com/The1TrueJoe/SCGSSM-Assignments",
       liveUrl: "https://gssm.telaak.dev/",
     },
+    */
     /*
     {
       title: "UofSC Schoolwork",
