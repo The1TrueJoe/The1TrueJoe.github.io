@@ -78,6 +78,13 @@ export const info = {
       githubUrl: "https://github.com/autogolfcart",
       liveUrl: "https://autogolfc.art",
     },
+    {
+      title: "GSSM SPRI work @ USC",
+      isFeatured: true,
+      thumbnail: "https://telaak.dev/P4-SPRI-Internship/thumbnails/spri_pres.png",
+      githubUrl: "https://github.com/The1TrueJoe/P4-SPRI-Internship",
+      liveUrl: "https://telaak.dev/P4-SPRI-Internship/",
+    },
     /*{
       title: "User Automation Botnet",
       isFeatured: true,
