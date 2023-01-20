@@ -10,8 +10,8 @@ export const info = {
     {
       name: "GSSM - Instructor",
       location: "Hartsville, SC",
-      startDate: "Jan 2022",
-      endDate: "June 2022",
+      startDate: "Jan 2023",
+      endDate: "Jan 2023",
       description: [
         "- Tought the Engineering Projects interim course to over a dozen students",
         "- Helped students with project managment, hardware design, and software development",
