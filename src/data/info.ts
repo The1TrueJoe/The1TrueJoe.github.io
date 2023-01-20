@@ -127,4 +127,39 @@ export const info = {
     */
     
   ],
+
+  volunteering: [
+    {
+      name: "FIRST Robotics",
+      location: "SC",
+      startDate: "Feb 2022",
+      endDate: "Ongoing",
+      description: [
+        "- Volunteered at various FIRST Robotics events including FTC and FRC",
+        "- I helped with mentoring, feild reset, and am shadowing as an FTA",
+        "- Asked to speak at both the Hartsville and Anderson FRC events",
+      ],
+    },
+    {
+      name: "GSSM SPARK! Computer Science and Robotics Instructor",
+      location: "Hartsville, SC",
+      startDate: "June 2020",
+      endDate: "July 2022",
+      description: [
+        "- I helped pilot and teach an 8-week Python bootcamp",
+        "- I also taught other subjects including Computer Science and Robotics",
+        "- Much of the program was focused on underprivileged middle and high school students across SC",
+      ],
+    },
+    {
+      name: "Scouts BSA",
+      location: "Myrtle Beach, SC & Charlotte, NC",
+      startDate: "2017",
+      endDate: "2022",
+      description: [
+        "- Contributed to countless community service projects",
+        "- Assisted my troop as ASPL (Assistant Senior Patrol Leader), Patrol Leader, and Webmaster",
+      ],
+    },
+  ],
 };
