@@ -67,7 +67,7 @@ export const info = {
     github: "https://github.com/The1TrueJoe",
     email: "jtelaak@sc.edu",
     linkedin: "https://www.linkedin.com/in/jtelaak/",
-    resume: "/assets/docs/resume.pdf"
+    resume: "https://telaak.dev/The1TrueJoe/resume.pdf"
   },
 
   projects: [
