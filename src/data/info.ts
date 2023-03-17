@@ -8,6 +8,17 @@ export const info = {
 
   experience: [
     {
+      name: "UofSC SyReX Lab - Undergraduate Researcher",
+      location: "Columbia, SC",
+      startDate: "Jan 2023",
+      endDate: "Ongoing",
+      description: [
+        "- Worked with mmWave radar to detect and track objects",
+        "- Developed scripts in Python and MATLAB to automate data collection and analysis",
+        "- Collected a dataset of radar, LiDAR, GPS, and video data in a vehicle",
+      ],
+    },
+    {
       name: "GSSM - Instructor",
       location: "Hartsville, SC",
       startDate: "Jan 2023",
