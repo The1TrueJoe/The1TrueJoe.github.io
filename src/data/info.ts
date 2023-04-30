@@ -60,7 +60,7 @@ export const info = {
       startDate: "2022",
       endDate: "2024",
       description: [
-        "B.S.E in Computer Engineering", "Minor in Mathematics and Physics", "ACM Code-A-Thon winner", "Rocketry Club Avionics Designer"
+        "B.S.E in Computer Engineering", "B.S in Mathematics", "- ACM Code-A-Thon winner", "- Rocketry Club Avionics Team Lead"
       ],
     },
     {
@@ -69,7 +69,7 @@ export const info = {
       startDate: "2020",
       endDate: "2022",
       description: [
-        "High School Diploma", "Concentration in Computer Science and Mathematics", "Created ENGIN 210 Projects course", "Founded the GSSM Golf Cart Project", "Programming Captain of FTC Robotics Team", "SPARK! Computer Science and Robotics instructor", "SPARK! Python leader"
+        "High School Diploma", "Concentration in Computer Science and Mathematics", "- Created ENGIN 210 Projects course", "- Founded the GSSM Golf Cart Project", "- Programming Captain of FTC Robotics Team", "- SPARK! Computer Science and Robotics instructor", "- SPARK! Python leader"
       ],
     },
   ],
@@ -89,6 +89,7 @@ export const info = {
       githubUrl: "https://github.com/autogolfcart",
       liveUrl: "https://autogolfc.art",
     },
+    /*
     {
       title: "GSSM SPRI work @ USC",
       isFeatured: true,
@@ -96,6 +97,7 @@ export const info = {
       githubUrl: "https://github.com/The1TrueJoe/P4-SPRI-Internship",
       liveUrl: "https://telaak.dev/P4-SPRI-Internship/",
     },
+    */
     /*{
       title: "User Automation Botnet",
       isFeatured: true,
