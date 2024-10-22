@@ -78,7 +78,7 @@ export const info = {
     resume: "https://telaak.dev/The1TrueJoe/resume.pdf"
   },
 
-  /* Commented-out projects section for now 
+  
   projects: [
     {
       title: "Self-Driving Golf Cart",
@@ -87,6 +87,7 @@ export const info = {
       githubUrl: "https://github.com/autogolfcart",
       liveUrl: "https://autogolfc.art",
     },
+    /* Commented-out projects section for now 
     {
       title: "RISC-V CPU",
       isFeatured: false,
@@ -102,8 +103,9 @@ export const info = {
       isFeatured: false,
       description: "Built an automated PCB assembly machine using Marlin and OpenPNP.",
     }
+    */
   ],
-  */
+
 
   volunteering: [
     {
