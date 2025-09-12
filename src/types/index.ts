@@ -21,6 +21,13 @@ export interface IExperiences {
   details: IExperience[];
 }
 
+export interface ISkills {
+  software: string[];
+  tooling: string[];
+  embedded: string[];
+  memberships: string[];
+}
+
 export interface IProject {
   title: string;
   isFeatured: boolean;

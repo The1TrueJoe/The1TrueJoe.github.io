@@ -1,0 +1,62 @@
+---
+export interface Props {
+  title: string;
+  skills: {
+    software: string[];
+    tooling: string[];
+    embedded: string[];
+    memberships: string[];
+  };
+}
+
+const { title, skills } = Astro.props;
+---
+
+<section class="mt-16">
+  <h2 class="w-[15rem] dark:text-light mb-8">{title}</h2>
+  <div class="space-y-6">
+    <div>
+      <h3 class="text-lg font-semibold dark:text-light mb-3">Software</h3>
+      <div class="flex flex-wrap gap-2">
+        {skills.software.map((skill) => (
+          <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm rounded-md dark:text-light">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+    
+    <div>
+      <h3 class="text-lg font-semibold dark:text-light mb-3">Tooling</h3>
+      <div class="flex flex-wrap gap-2">
+        {skills.tooling.map((skill) => (
+          <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm rounded-md dark:text-light">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+    
+    <div>
+      <h3 class="text-lg font-semibold dark:text-light mb-3">Embedded</h3>
+      <div class="flex flex-wrap gap-2">
+        {skills.embedded.map((skill) => (
+          <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm rounded-md dark:text-light">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+    
+    <div>
+      <h3 class="text-lg font-semibold dark:text-light mb-3">Memberships</h3>
+      <div class="flex flex-wrap gap-2">
+        {skills.memberships.map((membership) => (
+          <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-sm rounded-md dark:text-light">
+            {membership}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

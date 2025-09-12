@@ -1,44 +1,58 @@
 export const info = {
   baseUrl: "https://astro-portfolio-uzair.vercel.app",
   name: "Joseph Telaak",
-  jobDescription: "Senior Computer Engineering Major at UofSC",
-  about: `I am a Senior Computer Engineering Major at UofSC, with a Leadership Distinction in Research, graduating in just 2.5 years. 
-  My interests span embedded systems, network systems architecture, and robotics. I'm currently working on various projects, including developing contactless vital sign monitoring using mmWave radar and consulting on an autonomous golf cart project.
-  I have strong expertise in combining robotics, embedded hardware, artificial intelligence, computer vision, IoT, and networking technologies.`,
+  jobDescription: "Managing Embedded Software Engineer at Parkeze",
+  about: `I am a Managing Embedded Software Engineer at Parkeze, with a BSE in Computer Engineering from UofSC. 
+  I specialize in end-to-end IoT system development, from ultra-low-power embedded hardware to cloud-native backend infrastructure. My expertise spans embedded systems, network architecture, mmWave radar research, and autonomous systems development.
+  I have strong experience combining robotics, embedded hardware, artificial intelligence, computer vision, IoT, and networking technologies to create innovative solutions.`,
 
   experience: [
+    {
+      name: "Parkeze - Managing Embedded Software Engineer",
+      location: "Columbia, SC",
+      startDate: "Dec 2024",
+      endDate: "Present",
+      description: [
+        "- Led end-to-end development of ultra-low-power IoT parking sensors, from concept to market launch.",
+        "- Architected cloud-native backend infrastructure supporting real-time data streaming to 1000+ users.",
+        "- Optimized sensor hardware and firmware achieving 50% power reduction and 120% cost savings.",
+        "- Built comprehensive analytics platform using React and Flask for real-time sensor performance monitoring.",
+        "- Developed custom Debian distribution for LoRaWAN gateways to reduce deployment time."
+      ],
+    },
     {
       name: "UofSC Systems Research on X Lab - Research Assistant",
       location: "Columbia, SC",
       startDate: "Feb 2023",
-      endDate: "Ongoing",
+      endDate: "Dec 2024",
       description: [
-        "- Developed a system for contactless prediction of ECG readings using mmWave radar.",
-        "- Designed and demonstrated a live system for contactless vital sign measurements.",
-        "- Published research on generating 3D bounding boxes using only mmWave radar.",
-        "- Created setups to collect ground truth data for radar-based projects."
+        "- Co-authored research on novel mmWave radar algorithms for 3D vehicle and pedestrian detection.",
+        "- Secured research funding through competitive grant proposals.",
+        "- Developed contactless vital sign monitoring system.",
+        "- Designed data collection infrastructure supporting multiple research projects."
       ],
     },
     {
-      name: "SCGSSM Autonomous Golf Cart Project - Founder and Part-Time Consultant/Instructor",
+      name: "SCGSSM Autonomous Golf Cart Project - Project Lead",
       location: "Hartsville, SC",
       startDate: "Jan 2022",
-      endDate: "Feb 2023, Jan 2024 - Present",
+      endDate: "Feb 2023, Jan 2024 - May 2024",
       description: [
-        "- Converted standard golf carts to ADAS-enabled vehicles with V2V communication.",
-        "- Managed funding (>$50,000) and technical design for the project.",
-        "- Designed custom Nvidia Jetson carrier board and implemented a vision-based ADAS system.",
-        "- Created a course around the project and served as a guest instructor."
+        "- Transformed a legacy golf cart into an autonomous vehicle platform for research.",
+        "- Engineered networked interface module enabling software control of legacy analog vehicle systems.",
+        "- Designed custom Nvidia Jetson carrier board with multi-channel analog-to-digital video capture capabilities.",
+        "- Implemented computer vision pipeline for obstacle detection, traffic sign recognition, and lane tracking.",
+        "- Mentored 20+ students and established ongoing curriculum for autonomous systems development."
       ],
     },
     {
       name: "UofSC Cyberinfrastructure Lab - Research Assistant",
       location: "Columbia, SC",
-      startDate: "June 2021",
-      endDate: "July 2021",
+      startDate: "Summer 2021",
+      endDate: "Summer 2021",
       description: [
-        "- Developed automated tests for throughput and packet loss measurement.",
-        "- Built an on-switch load balancer using P4 in real and simulated networks.",
+        "- Automated equipment configuration, throughput testing, and packet loss measurements in networks.",
+        "- Created an on-switch webserver load balancer in P4.",
       ],
     }
   ],
@@ -47,10 +61,10 @@ export const info = {
     {
       name: "University of South Carolina",
       location: "Columbia, SC",
-      startDate: "2022",
-      endDate: "2024",
+      startDate: "Aug 2022",
+      endDate: "Dec 2024",
       description: [
-        "B.S.E in Computer Engineering, Leadership Distinction in Research", 
+        "BSE in Computer Engineering, Leadership Distinction in Research (GPA: 3.61)", 
         "- ACM Code-A-Thon winner", 
         "- Rocketry Club Avionics Team Lead"
       ],
@@ -75,7 +89,8 @@ export const info = {
     github: "https://github.com/The1TrueJoe",
     email: "jtelaak@sc.edu",
     linkedin: "https://www.linkedin.com/in/jtelaak/",
-    resume: "https://telaak.dev/The1TrueJoe/resume.pdf"
+    resume: "https://telaak.dev/The1TrueJoe/resume.pdf",
+    phone: "704-351-7396"
   },
 
   
@@ -87,23 +102,31 @@ export const info = {
       githubUrl: "https://github.com/autogolfcart",
       liveUrl: "https://autogolfc.art",
     },
-    /* Commented-out projects section for now 
     {
-      title: "RISC-V CPU",
-      isFeatured: false,
-      description: "Designed a multicore RISC-V CPU with a matrix coprocessor and custom peripherals for PWM, SPI, and I2C.",
+      title: "PiSwitch",
+      isFeatured: true,
+      description: "Created a 7-port router/network switch with custom controller, web UI, and OOB management.",
     },
     {
-      title: "Rocket Flight Computer",
+      title: "LLM Voice Assistant",
+      isFeatured: true,
+      description: "Designed a far-field mic array with XVF DSP, Zephyr on i.MXRT, ESP32 Wi-Fi NIC, OTA for all 3 major chips, and real-time audio streaming to a LLM pipeline.",
+    },
+    {
+      title: "Agentic Audio Streamer",
+      isFeatured: true,
+      description: "Developed a multi-room audio streaming system using an ADAU DSP, DACs, and Raspberry Pi CM5. Integrated Spotify Connect and enabled external control via a custom API for LLMs.",
+    },
+    {
+      title: "RISC CPU",
       isFeatured: false,
-      description: "Created a flight computer for rockets with GPS, IMU, barometer, and LoRA telemetry on a custom PCB.",
+      description: "Implemented a parallelized RISC CPU with GPIO on an FPGA.",
     },
     {
       title: "Pick-n-Place Machine",
       isFeatured: false,
-      description: "Built an automated PCB assembly machine using Marlin and OpenPNP.",
+      description: "Designed and built a desktop PCB assembler running Marlin and OpenPNP.",
     }
-    */
   ],
 
 
@@ -112,30 +135,26 @@ export const info = {
       name: "SCGSSM Board of Directors",
       location: "Hartsville, SC",
       startDate: "Jul 2023",
-      endDate: "Ongoing",
+      endDate: "Present",
       description: [
-        "- Serving on the Alumni Association Board and the Engagement Committee."
+        "- Alumni Association Engagement Committee Member."
       ],
     },
     {
       name: "FIRST Robotics",
-      location: "SC",
+      location: "Columbia, SC",
       startDate: "Jan 2022",
-      endDate: "Ongoing",
+      endDate: "Present",
       description: [
-        "- Volunteering as a FIRST Technical Advisor (FTA), helping mentor teams, field reset, and event support.",
+        "- FIRST Technical Advisor, Judge, Robot Inspector.",
       ],
     },
-    /* Commented-out Boy Scouts section for now
-    {
-      name: "Scouts BSA",
-      location: "Myrtle Beach, SC & Charlotte, NC",
-      startDate: "2017",
-      endDate: "2022",
-      description: [
-        "- Led numerous community service projects and held leadership roles, including Assistant Senior Patrol Leader and Webmaster."
-      ],
-    }
-    */
   ],
+
+  skills: {
+    software: ["C/C++", "Python", "Java", "MATLAB", "Rust", "LUA"],
+    tooling: ["Altium", "KiCad", "Quartus", "STM32 Cube", "MXUExpresso", "mmWave Studio"],
+    embedded: ["Zephyr", "Yocto", "Buildroot"],
+    memberships: ["IEEE Eta Kappa Nu (HKN)", "IEEE MTTS", "IEEE", "ACM", "AIAA"]
+  },
 };
