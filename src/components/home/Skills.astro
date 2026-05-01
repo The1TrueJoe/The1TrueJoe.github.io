@@ -10,53 +10,38 @@ export interface Props {
 }
 
 const { title, skills } = Astro.props;
+
+const groups: { label: string; items: string[]; chipClass: string }[] = [
+  { label: "Languages & Software", items: skills.software,    chipClass: "chip-cyan" },
+  { label: "Tooling & EDA",        items: skills.tooling,     chipClass: "chip-purple" },
+  { label: "Embedded / OS",        items: skills.embedded,    chipClass: "chip-amber" },
+  { label: "Memberships",          items: skills.memberships, chipClass: "chip-green" },
+];
 ---
 
-<section class="mt-16">
-  <h2 class="w-[15rem] dark:text-light mb-8">{title}</h2>
-  <div class="space-y-6">
-    <div>
-      <h3 class="text-lg font-semibold dark:text-light mb-3">Software</h3>
-      <div class="flex flex-wrap gap-2">
-        {skills.software.map((skill) => (
-          <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm rounded-md dark:text-light">
-            {skill}
-          </span>
-        ))}
-      </div>
-    </div>
-    
-    <div>
-      <h3 class="text-lg font-semibold dark:text-light mb-3">Tooling</h3>
-      <div class="flex flex-wrap gap-2">
-        {skills.tooling.map((skill) => (
-          <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm rounded-md dark:text-light">
-            {skill}
-          </span>
-        ))}
-      </div>
-    </div>
-    
-    <div>
-      <h3 class="text-lg font-semibold dark:text-light mb-3">Embedded</h3>
-      <div class="flex flex-wrap gap-2">
-        {skills.embedded.map((skill) => (
-          <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm rounded-md dark:text-light">
-            {skill}
-          </span>
-        ))}
-      </div>
-    </div>
-    
-    <div>
-      <h3 class="text-lg font-semibold dark:text-light mb-3">Memberships</h3>
-      <div class="flex flex-wrap gap-2">
-        {skills.memberships.map((membership) => (
-          <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-sm rounded-md dark:text-light">
-            {membership}
-          </span>
-        ))}
-      </div>
-    </div>
+<section class="mt-24">
+  <!-- Section header -->
+  <div class="section-header">
+    <span class="mono-label">{title}</span>
+  </div>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    {
+      groups.map((group) => (
+        <div class="v0-card p-5">
+          <!-- Group header -->
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-[#27272a]">
+            <span class="mono-label text-[#a1a1aa]">{group.label}</span>
+          </div>
+
+          <!-- Chips -->
+          <div class="flex flex-wrap gap-1.5">
+            {group.items.map((skill) => (
+              <span class={group.chipClass}>{skill}</span>
+            ))}
+          </div>
+        </div>
+      ))
+    }
   </div>
 </section>

@@ -14,7 +14,7 @@ const featureProjects = info.projects.filter((project, index) => {
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <MetaHead
       title={"Portfolio"}
@@ -26,14 +26,26 @@ const featureProjects = info.projects.filter((project, index) => {
   <body>
     <Layout>
       <Hero name={info.name} about={info.about} />
-      <Experience title={"EXPERIENCE"} details={info.experience} />
-      <Experience title={"EDUCATION"} details={info.education} />
-      <Skills title={"SKILLS"} skills={info.skills} />
+      <div id="experience">
+        <Experience title={"EXPERIENCE"} details={info.experience} />
+        <Experience title={"EDUCATION"} details={info.education} />
+      </div>
+      <div id="skills">
+        <Skills title={"SKILLS"} skills={info.skills} />
+      </div>
       <Experience title={"LEADERSHIP"} details={info.volunteering} />
-      <section>
-        <h2 class="w-[15rem] dark:text-light mt-16">FEATURE PROJECTS</h2>
-        <ProjectsWrapper projects={featureProjects} />
-      </section>
+      <div id="projects">
+        <section class="mt-24 mb-8">
+          <div class="section-header">
+            <span class="mono-label">Featured Projects</span>
+            <div class="flex-1"></div>
+            <a href="/projects" class="btn-ghost text-xs">
+              View all &rarr;
+            </a>
+          </div>
+          <ProjectsWrapper projects={featureProjects} />
+        </section>
+      </div>
     </Layout>
   </body>
 </html>

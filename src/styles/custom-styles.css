@@ -1,34 +1,63 @@
-/* gradient heading */
+/* ===== Animated gradient heading ===== */
 .main-heading {
   display: inline-block;
-  margin: 2rem 0;
-  font-style: normal;
-  font-weight: 600;
-  background: linear-gradient(
-    89.81deg,
-    #9845e8 -1.72%,
-    #33d2ff 54.05%,
-    #dd5789 99.78%
-  );
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, #f4f4f5 0%, #a1a1aa 50%, #f4f4f5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
-  background-size: 150% 150%;
-  animation: gradient 15s ease infinite;
-  line-height: 1.2;
+  background-size: 200% 200%;
+  animation: shimmer 5s ease infinite;
+  line-height: 1.0;
 }
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
+@keyframes shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-  50% {
-    background-position: 100% 50%;
-  }
+/* ===== Very subtle grid (V0 style) ===== */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
 
-  100% {
-    background-position: 0% 50%;
-  }
+/* ===== Glow on cyan accent ===== */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(34,211,238,0.15);
+}
+
+/* ===== Section divider with label ===== */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #27272a;
+}
+
+/* ===== Status badge ===== */
+.status-shipped { color: #22c55e; background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.2); }
+.status-wip     { color: #f59e0b; background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2); }
+.status-archived{ color: #71717a; background: rgba(113,113,122,0.08); border-color: rgba(113,113,122,0.2); }
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: #09090b; }
+::-webkit-scrollbar-thumb { background: #27272a; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #22d3ee; }
+
+/* ===== Image card overlay ===== */
+.img-overlay {
+  background: linear-gradient(to top, rgba(9,9,11,0.9) 0%, rgba(9,9,11,0.2) 60%, transparent 100%);
+}
+
+/* ===== Subtle vignette on hero ===== */
+.hero-vignette {
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34,211,238,0.04) 0%, transparent 70%);
 }

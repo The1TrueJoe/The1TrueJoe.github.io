@@ -8,34 +8,106 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========== tailwind custom styles ========== */
+@layer base {
+  :root { scroll-behavior: smooth; }
+  * { box-sizing: border-box; }
+  ::selection { background: rgba(34,211,238,0.15); color: #22d3ee; }
+}
+
 @layer components {
   body {
-    @apply bg-light dark:bg-dark;
+    @apply bg-[#09090b] text-[#a1a1aa] antialiased;
   }
+
   .container {
-    @apply max-w-[1112px] mx-auto px-4;
+    @apply max-w-[1100px] mx-auto px-6;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-outfit;
+
+  /* --- Typography --- */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-outfit text-[#f4f4f5];
   }
+
   h1 {
-    @apply text-6xl sm:text-8xl main-heading;
+    @apply text-5xl sm:text-[5.5rem] font-bold leading-[1.0];
   }
+
   h2 {
-    @apply text-xl font-semibold;
+    @apply text-2xl font-bold text-[#f4f4f5];
   }
-  p,
-  li,
+
+  h3 {
+    @apply text-base font-semibold text-[#e4e4e7];
+  }
+
+  p, li {
+    @apply font-inter text-[#a1a1aa] leading-relaxed;
+  }
+
   a {
-    @apply font-inter text-dark-gray;
+    @apply font-inter;
   }
+
+  /* --- Card (V0 zinc-900 style) --- */
+  .v0-card {
+    @apply bg-[#18181b] border border-[#27272a] rounded-xl transition-all duration-200;
+  }
+
+  .v0-card:hover {
+    @apply border-[#3f3f46];
+    box-shadow: 0 0 0 1px rgba(34,211,238,0.08), 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  /* --- Badge / chip --- */
+  .chip {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-md font-mono text-[11px] border border-[#27272a] text-[#71717a] bg-[#18181b] transition-colors duration-100;
+  }
+
+  .chip-cyan   { @apply chip border-[#22d3ee]/20 text-[#22d3ee] bg-[#22d3ee]/[0.06]; }
+  .chip-blue   { @apply chip border-[#3b82f6]/20 text-[#3b82f6] bg-[#3b82f6]/[0.06]; }
+  .chip-green  { @apply chip border-[#22c55e]/20 text-[#22c55e] bg-[#22c55e]/[0.06]; }
+  .chip-amber  { @apply chip border-[#f59e0b]/20 text-[#f59e0b] bg-[#f59e0b]/[0.06]; }
+  .chip-red    { @apply chip border-[#ef4444]/20 text-[#ef4444] bg-[#ef4444]/[0.06]; }
+  .chip-purple { @apply chip border-[#a855f7]/20 text-[#a855f7] bg-[#a855f7]/[0.06]; }
+
+  /* keep old .tag aliases for compat */
+  .tag        { @apply chip; }
+  .tag-cyan   { @apply chip-cyan; }
+  .tag-purple { @apply chip-purple; }
+  .tag-pink   { @apply chip border-[#f472b6]/20 text-[#f472b6] bg-[#f472b6]/[0.06]; }
+  .tag-green  { @apply chip-green; }
+  .tag-gray   { @apply chip; }
+
+  /* --- Mono section label --- */
+  .mono-label {
+    @apply font-mono text-[11px] tracking-[0.15em] uppercase text-[#22d3ee];
+  }
+
+  /* --- Footer icons --- */
   .footer-icons {
-    @apply dark:text-light flex items-center border border-dark dark:border-light p-4 rounded-lg justify-center;
+    @apply flex items-center justify-center w-8 h-8 rounded-md border border-[#27272a] text-[#71717a]
+           hover:border-[#22d3ee]/40 hover:text-[#22d3ee] hover:bg-[#22d3ee]/[0.06] transition-all duration-150;
+  }
+
+  /* --- Button --- */
+  .btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium font-inter transition-all duration-150;
+  }
+
+  .btn-primary {
+    @apply btn bg-[#f4f4f5] text-[#09090b] hover:bg-white;
+  }
+
+  .btn-outline {
+    @apply btn border border-[#27272a] text-[#a1a1aa] hover:border-[#3f3f46] hover:text-[#f4f4f5] hover:bg-[#18181b];
+  }
+
+  .btn-ghost {
+    @apply btn text-[#71717a] hover:text-[#f4f4f5] hover:bg-[#18181b];
+  }
+
+  /* --- Divider --- */
+  .divider {
+    @apply w-full h-px bg-[#27272a];
   }
 }

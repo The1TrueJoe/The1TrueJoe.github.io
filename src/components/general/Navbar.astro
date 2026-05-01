@@ -3,21 +3,46 @@ import { info } from "@data";
 import { createLogo } from "@utils";
 ---
 
-<header
-  class="container flex items-center justify-between h-[80px] sm:h-[123px]"
->
-  <a
-    class="text-2xl dark:text-light font-semibold dark:font-semibold font-outfit"
-    href="/"
-    >{createLogo(info.name)}.
-  </a>
-  <nav>
-    <ul class="flex items-center">
-      <li>
-        <a class="p-4 dark:text-light block text-lg" href="/projects"
-          >Projects</a
-        >
-      </li>
-    </ul>
-  </nav>
+<header class="sticky top-0 z-50 bg-[#09090b]/90 backdrop-blur-md border-b border-[#27272a]">
+  <div class="container flex items-center justify-between h-14">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-1.5 group" aria-label="Home">
+      <div class="w-6 h-6 rounded bg-[#22d3ee]/10 border border-[#22d3ee]/20 flex items-center justify-center">
+        <span class="font-mono text-[10px] font-bold text-[#22d3ee]">{createLogo(info.name)}</span>
+      </div>
+      <span class="font-outfit font-semibold text-sm text-[#e4e4e7] group-hover:text-white transition-colors">
+        {info.name}
+      </span>
+    </a>
+
+    <!-- Nav -->
+    <nav>
+      <ul class="flex items-center gap-1">
+        <li class="hidden sm:block">
+          <a href="/#experience" class="btn-ghost text-xs">Experience</a>
+        </li>
+        <li class="hidden sm:block">
+          <a href="/#skills" class="btn-ghost text-xs">Skills</a>
+        </li>
+        <li class="hidden sm:block">
+          <a href="/#projects" class="btn-ghost text-xs">Projects</a>
+        </li>
+        <li>
+          <a href="/projects" class="btn-ghost text-xs">All Work</a>
+        </li>
+        <li>
+          <a
+            href={info.socialMedia.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-outline text-xs"
+          >
+            Resume
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
 </header>

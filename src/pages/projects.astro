@@ -9,7 +9,7 @@ const Projects = info.projects.map((project) => project);
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <MetaHead
       title={"Projects and Work"}
@@ -20,7 +20,13 @@ const Projects = info.projects.map((project) => project);
 
   <body>
     <Layout>
-      <h1 style="line-height: 1.2;">Projects</h1>
+      <div class="pt-16 pb-10">
+        <p class="mono-label mb-6">Work</p>
+        <h1 class="main-heading">Projects</h1>
+        <p class="font-inter text-[15px] text-[#71717a] mt-4 max-w-xl leading-relaxed">
+          Hardware, firmware, and software &mdash; from PCB to cloud.
+        </p>
+      </div>
       <ProjectsWrapper projects={Projects} />
     </Layout>
   </body>

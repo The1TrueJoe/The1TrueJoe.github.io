@@ -15,6 +15,8 @@ export interface IExperience {
   startDate: string;
   endDate: string;
   description: string[];
+  tags?: string[];
+  image?: string;
 }
 export interface IExperiences {
   title: string;
@@ -35,6 +37,10 @@ export interface IProject {
   githubUrl?: string;
   liveUrl?: string;
   description?: string;
+  stack?: string[];
+  category?: string;
+  year?: string;
+  status?: "shipped" | "wip" | "archived";
 }
 export interface IProjects {
   projects: IProject[];
@@ -42,4 +48,5 @@ export interface IProjects {
 
 export interface IProjectDetails {
   projectDetail: IProject;
+  index?: number;
 }
