@@ -2,9 +2,7 @@ export const info = {
   baseUrl: "https://telaak.dev",
   name: "Joseph Telaak",
   jobDescription: "Chief Executive Officer at Parkeze",
-  about: `I am a Managing Embedded Software Engineer at Parkeze, with a BSE in Computer Engineering from UofSC. 
-  I specialize in end-to-end IoT system development, from ultra-low-power embedded hardware to cloud-native backend infrastructure. My expertise spans embedded systems, network architecture, mmWave radar research, and autonomous systems development.
-  I have strong experience combining robotics, embedded hardware, artificial intelligence, computer vision, IoT, and networking technologies to create innovative solutions.`,
+  about: `CEO of Parkeze. Computer Engineering graduate from UofSC. I build things from PCB design and bare-metal firmware all the way up to distributed backend systems.`,
 
   experience: [
     {
