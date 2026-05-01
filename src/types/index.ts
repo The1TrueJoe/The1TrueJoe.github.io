@@ -31,9 +31,10 @@ export interface ISkills {
 export interface IProject {
   title: string;
   isFeatured: boolean;
-  thumbnail: string;
-  githubUrl: string;
-  liveUrl: string;
+  thumbnail?: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  description?: string;
 }
 export interface IProjects {
   projects: IProject[];

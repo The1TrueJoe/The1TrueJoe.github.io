@@ -8,10 +8,8 @@ import Skills from "@components/home/Skills.astro";
 import ProjectsWrapper from "@components/general/ProjectsWrapper.astro";
 import MetaHead from "@components/general/MetaHead.astro";
 
-const featureProjects = info.projects.map((project, index) => {
-  if (project.isFeatured && index < 6) {
-    return project;
-  }
+const featureProjects = info.projects.filter((project, index) => {
+  return project.isFeatured && index < 6;
 });
 ---
 
