@@ -1,23 +1,27 @@
 export const info = {
-  baseUrl: "https://astro-portfolio-uzair.vercel.app",
+  baseUrl: "https://telaak.dev",
   name: "Joseph Telaak",
-  jobDescription: "Managing Embedded Software Engineer at Parkeze",
+  jobDescription: "Chief Executive Officer at Parkeze",
   about: `I am a Managing Embedded Software Engineer at Parkeze, with a BSE in Computer Engineering from UofSC. 
   I specialize in end-to-end IoT system development, from ultra-low-power embedded hardware to cloud-native backend infrastructure. My expertise spans embedded systems, network architecture, mmWave radar research, and autonomous systems development.
   I have strong experience combining robotics, embedded hardware, artificial intelligence, computer vision, IoT, and networking technologies to create innovative solutions.`,
 
   experience: [
     {
-      name: "Parkeze - Managing Embedded Software Engineer",
+      name: "Parkeze - Chief Executive Officer",
       location: "Columbia, SC",
       startDate: "Dec 2024",
       endDate: "Present",
       description: [
         "- Led end-to-end development of ultra-low-power IoT parking sensors, from concept to market launch.",
         "- Architected cloud-native backend infrastructure supporting real-time data streaming to 1000+ users.",
-        "- Optimized sensor hardware and firmware achieving 50% power reduction and 120% cost savings.",
-        "- Built comprehensive analytics platform using React and Flask for real-time sensor performance monitoring.",
-        "- Developed custom Debian distribution for LoRaWAN gateways to reduce deployment time."
+        "- Optimized sensor hardware and firmware achieving 120% power reduction and 300% cost savings.",
+        "- Built comprehensive analytics platform using React, GraphQL, and TimescaleDB for data insights.",
+        "- Implemented a highly extensible event ingestion and emission pipeline using Kafka to support 3rd-party systems.",
+        "- Developed several extensions for Keycloak's open-source IAM to support our unique authorization requirements.",
+        "- Created a CI/CD pipeline to perform end-to-end integration testing and blue/green deployment on Kubernetes.",
+        "- Ported the LoRaWAN gateway stack to Zephyr RTOS with custom high-availability features for our gateways.",
+        "- Involved in all aspects of the business, including fundraising, sales, marketing, and customer support."
       ],
     },
     {
@@ -38,8 +42,8 @@ export const info = {
       startDate: "Jan 2022",
       endDate: "Feb 2023, Jan 2024 - May 2024",
       description: [
-        "- Transformed a legacy golf cart into an autonomous vehicle platform for research.",
-        "- Engineered networked interface module enabling software control of legacy analog vehicle systems.",
+        "- Transformed a standard golf cart into an autonomous vehicle platform for research.",
+        "- Engineered a complete ADAS control module for the golf cart's steering, throttle, and braking systems.",
         "- Designed custom Nvidia Jetson carrier board with multi-channel analog-to-digital video capture capabilities.",
         "- Implemented computer vision pipeline for obstacle detection, traffic sign recognition, and lane tracking.",
         "- Mentored 20+ students and established ongoing curriculum for autonomous systems development."
@@ -87,7 +91,7 @@ export const info = {
 
   socialMedia: {
     github: "https://github.com/The1TrueJoe",
-    email: "jtelaak@sc.edu",
+    email: "jttelaak04@gmail.com",
     linkedin: "https://www.linkedin.com/in/jtelaak/",
     resume: "https://telaak.dev/The1TrueJoe/resume.pdf",
     phone: "704-351-7396"
@@ -98,9 +102,9 @@ export const info = {
     {
       title: "Self-Driving Golf Cart",
       isFeatured: true,
-      thumbnail: "/assets/images/cart4.jpg",
+      // thumbnail: "/assets/images/cart4.jpg",
       githubUrl: "https://github.com/autogolfcart",
-      liveUrl: "https://autogolfc.art",
+      // liveUrl: "https://autogolfc.art",
     },
     {
       title: "PiSwitch",
@@ -110,17 +114,17 @@ export const info = {
     {
       title: "LLM Voice Assistant",
       isFeatured: true,
-      description: "Designed a far-field mic array with XVF DSP, Zephyr on i.MXRT, ESP32 Wi-Fi NIC, OTA for all 3 major chips, and real-time audio streaming to a LLM pipeline.",
+      description: "Designed a far-field mic array with XMOS DSP, Zephyr on i.MXRT, ESP32 Wi-Fi NIC, OTA for all 3 major chips, and real-time audio streaming to a LLM pipeline.",
     },
     {
       title: "Agentic Audio Streamer",
       isFeatured: true,
-      description: "Developed a multi-room audio streaming system using an ADAU DSP, DACs, and Raspberry Pi CM5. Integrated Spotify Connect and enabled external control via a custom API for LLMs.",
+      description: "Developed a multi-room audio streaming system using a SigmaDSP, DACs, and Raspberry Pi CM5. Integrated Spotify Connect and enabled external control via a custom API for LLMs.",
     },
     {
-      title: "RISC CPU",
+      title: "RISCv CPU",
       isFeatured: false,
-      description: "Implemented a parallelized RISC CPU with GPIO on an FPGA.",
+      description: "Implemented a parallelized RISCv CPU with GPIO on an FPGA.",
     },
     {
       title: "Pick-n-Place Machine",
@@ -144,7 +148,7 @@ export const info = {
       name: "FIRST Robotics",
       location: "Columbia, SC",
       startDate: "Jan 2022",
-      endDate: "Present",
+      endDate: "May 2025",
       description: [
         "- FIRST Technical Advisor, Judge, Robot Inspector.",
       ],
