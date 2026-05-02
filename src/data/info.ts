@@ -110,7 +110,7 @@ export const info = {
       title: "Self-Driving Golf Cart",
       isFeatured: true,
       // thumbnail: "/assets/images/cart4.jpg",
-      githubUrl: "https://github.com/autogolfcart",
+      //githubUrl: "https://github.com/autogolfcart",
       // liveUrl: "https://autogolfc.art",
       description: "Transformed a standard golf cart into a full autonomous vehicle platform. Custom Nvidia Jetson carrier board, ADAS control module, and a CV pipeline for lane tracking, obstacle detection, and sign recognition.",
       stack: ["C++", "Python", "ROS", "Nvidia Jetson", "OpenCV", "Altium"],
