@@ -1,0 +1,84 @@
+---
+import { getCollection, render } from "astro:content";
+
+import Base from "@layouts/Base.astro";
+import Tags from "@components/Tags.astro";
+import site from "@data/site.json";
+
+export async function getStaticPaths() {
+  const work = (await getCollection("work", ({ data }) => !data.draft)).sort(
+    (a, b) => a.data.order - b.data.order
+  );
+
+  return work.map((entry, index) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      index,
+      /** Wraps around, so the last writeup points back at the first. */
+      next: work[(index + 1) % work.length],
+    },
+  }));
+}
+
+const { entry, index, next } = Astro.props;
+const { title, category, status, summary, lede, tags, image, imageAlt, imageCaption, repo, live } =
+  entry.data;
+
+const { Content } = await render(entry);
+
+const pad = (n: number) => String(n).padStart(2, "0");
+const kicker = [`Writeup ${pad(index + 1)}`, category, status === "wip" && "In progress"]
+  .filter(Boolean)
+  .join(" — ");
+---
+
+<Base
+  title={title}
+  description={summary}
+  ogImage={image ?? site.ogImage}
+  type="article"
+  current="work"
+>
+  <article class="article-head">
+    <div class="eyebrow" style="margin-bottom: 20px">{kicker}</div>
+    <h1>{title}</h1>
+    <p class="article-head__lede">{lede ?? summary}</p>
+    <Tags items={tags} />
+
+    {
+      (repo || live) && (
+        <div class="actions" style="margin-top: 24px">
+          {repo && (
+            <a class="btn btn-secondary" href={repo} target="_blank" rel="noopener">
+              Source on GitHub →
+            </a>
+          )}
+          {live && (
+            <a class="btn btn-secondary" href={live} target="_blank" rel="noopener">
+              Live →
+            </a>
+          )}
+        </div>
+      )
+    }
+
+    {
+      image && (
+        <figure class="frame grayscale">
+          <img src={image} alt={imageAlt ?? title} />
+          {imageCaption && <figcaption class="text-muted">{imageCaption}</figcaption>}
+        </figure>
+      )
+    }
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <nav class="article-nav">
+      <a class="btn btn-secondary" href="/#work">← All work</a>
+      <a class="btn btn-primary" href={`/work/${next.id}`}>Next: {next.data.title} →</a>
+    </nav>
+  </article>
+</Base>

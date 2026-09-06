@@ -1,0 +1,648 @@
+/* Site layer — page composition on top of the Modernist system.
+   Everything here is built from the design tokens in modernist.css; no hex
+   values, font names or raw spacing numbers that the tokens already carry. */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: var(--color-accent-700);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* — page shell — */
+
+.shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-accent-700);
+}
+
+.overline {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.display {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+}
+
+/* — header — */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-4) 20px;
+  justify-content: space-between;
+  padding: var(--space-4) 0;
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-divider);
+}
+
+.site-header__brand {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3) 22px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.site-nav a {
+  color: var(--color-text);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--color-accent);
+}
+
+.site-nav .btn-primary {
+  color: var(--color-bg);
+  letter-spacing: 0.06em;
+}
+
+.site-nav .btn-primary:hover {
+  color: var(--color-bg);
+  text-decoration: none;
+}
+
+/* — hero — */
+
+.hero {
+  padding: 80px 0 56px;
+  border-bottom: 2px solid var(--color-divider);
+}
+
+.hero__eyebrow {
+  margin-bottom: 20px;
+}
+
+.hero__name {
+  font-size: clamp(46px, 9vw, 112px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin: 0 0 28px;
+}
+
+.hero__lede {
+  font-size: clamp(18px, 2.2vw, 24px);
+  line-height: 1.4;
+  max-width: 48ch;
+  margin: 0 0 var(--space-6);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* — section heads — */
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 2px solid var(--color-divider);
+}
+
+.section-head h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.section {
+  padding: 64px 0 0;
+}
+
+.subhead {
+  margin: 48px 0 0;
+  color: var(--color-accent-700);
+}
+
+/* — tag rows — */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* — selected work — */
+
+.work-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 88px) minmax(0, 1fr);
+  gap: 28px;
+  padding: 48px 0;
+  border-bottom: 2px solid var(--color-divider);
+}
+
+.work-entry__index {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 44px;
+  line-height: 0.9;
+  color: var(--color-accent);
+}
+
+.work-entry__body {
+  display: grid;
+  gap: 40px;
+  align-items: start;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+}
+
+/* Photograph on the left, text on the right — alternated down the page so the
+   column rhythm reads as a grid rather than a list. The heading stays first in
+   source order; only the visual column swaps. */
+.work-entry__body--mirrored {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+}
+
+.work-entry__body--mirrored .frame {
+  order: -1;
+}
+
+.work-entry__body--pair {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.work-entry h3 {
+  font-size: clamp(26px, 3.2vw, 36px);
+  letter-spacing: -0.025em;
+  margin: 0 0 14px;
+}
+
+.work-entry p {
+  font-size: 16px;
+  max-width: 58ch;
+}
+
+.work-entry .tags {
+  margin: 18px 0 20px;
+}
+
+.frame {
+  margin: 0;
+}
+
+.frame img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 2px solid var(--color-text);
+}
+
+.frame figcaption {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+/* — the poster statement — the one place the accent runs as a field — */
+
+.now {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  margin: 56px calc(var(--space-6) * -1) 0;
+  padding: 56px var(--space-6);
+}
+
+.now__inner {
+  max-width: 1132px;
+  margin: 0 auto;
+}
+
+.now .eyebrow {
+  color: inherit;
+  margin-bottom: 18px;
+}
+
+.now p {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: clamp(28px, 4.4vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  max-width: 30ch;
+  margin: 0;
+}
+
+/* — résumé — */
+
+.entry {
+  display: grid;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+  gap: var(--space-8);
+  padding: 28px 0;
+  border-top: 2px solid var(--color-divider);
+}
+
+.entry--last {
+  border-bottom: 2px solid var(--color-divider);
+}
+
+.entry--edu {
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr) minmax(0, 0.7fr);
+}
+
+.entry--service {
+  padding: var(--space-6) 0;
+}
+
+.entry__when {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 15px;
+}
+
+.entry h4 {
+  margin: 0 0 var(--space-1);
+}
+
+.entry__where {
+  font-size: 13px;
+  margin: 0;
+}
+
+.entry ul {
+  margin: var(--space-3) 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+  font-size: 15px;
+}
+
+.entry p {
+  font-size: 15px;
+  margin: var(--space-2) 0 0;
+}
+
+.entry .tags {
+  gap: 6px;
+  margin-top: var(--space-4);
+}
+
+.entry__aside {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: start;
+}
+
+/* — skills grid — */
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  border-top: 2px solid var(--color-divider);
+  border-bottom: 2px solid var(--color-divider);
+}
+
+.skills__cell {
+  padding: var(--space-6);
+  border-right: 2px solid var(--color-divider);
+}
+
+.skills__cell:first-child {
+  padding-left: 0;
+}
+
+.skills__cell:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.skills__label {
+  margin-bottom: var(--space-3);
+}
+
+.skills .tags {
+  gap: 6px;
+}
+
+/* — writeups and notes — */
+
+.article-head {
+  padding: 64px 0 0;
+}
+
+.article-head h1 {
+  font-size: clamp(38px, 6.4vw, 82px);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  margin: 0 0 var(--space-6);
+  max-width: 20ch;
+}
+
+.article-head__lede {
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.45;
+  max-width: 52ch;
+  margin: 0 0 var(--space-6);
+}
+
+.article-head .tags {
+  padding-bottom: var(--space-6);
+  border-bottom: 2px solid var(--color-divider);
+}
+
+.article-head .frame {
+  margin: var(--space-8) 0 0;
+}
+
+.article-head .frame img {
+  aspect-ratio: auto;
+  max-height: 620px;
+}
+
+/* Markdown body. rehype-prose-sections wraps each `##` and the prose under it
+   in a .prose-section, so the label column and its body are always siblings in
+   one row — no grid auto-placement to get out of step. */
+.prose {
+  margin-top: 40px;
+}
+
+.prose-section {
+  display: grid;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+  gap: var(--space-8);
+  padding: 40px 0 28px;
+  border-top: 2px solid var(--color-divider);
+}
+
+.prose-section:last-child {
+  border-bottom: 2px solid var(--color-divider);
+}
+
+/* A section with no heading (content above the first `##`) still keeps its
+   prose in the right-hand column. */
+.prose-section__body {
+  grid-column: 2;
+  max-width: 62ch;
+}
+
+.prose-section > h2 {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-700);
+  margin: 0;
+}
+
+.prose-section__body > * {
+  font-size: 17px;
+  margin: 0 0 var(--space-4);
+}
+
+.prose-section__body > *:last-child {
+  margin-bottom: 0;
+}
+
+.prose h3 {
+  font-size: 20px;
+  margin: var(--space-6) 0 var(--space-2);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+}
+
+.prose img {
+  border: 2px solid var(--color-text);
+  filter: grayscale(1) contrast(1.08);
+  max-width: 100%;
+}
+
+.prose blockquote {
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-accent);
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  font-size: 13px;
+}
+
+.prose code {
+  font-size: 0.92em;
+}
+
+.prose hr {
+  height: 2px;
+  border: 0;
+  background: var(--color-divider);
+  margin: var(--space-8) 0;
+}
+
+.article-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: 40px 0 72px;
+}
+
+/* — notes index — */
+
+.note-row {
+  display: grid;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+  gap: var(--space-8);
+  padding: 28px 0;
+  border-top: 2px solid var(--color-divider);
+  align-items: start;
+}
+
+.note-row:last-child {
+  border-bottom: 2px solid var(--color-divider);
+}
+
+.note-row h3 {
+  font-size: 25px;
+  margin: 0 0 var(--space-2);
+}
+
+.note-row h3 a {
+  color: var(--color-text);
+}
+
+.note-row h3 a:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.note-row p {
+  font-size: 15px;
+  max-width: 62ch;
+  margin: 0;
+}
+
+/* — footer — */
+
+.site-footer {
+  padding: 64px 0 72px;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-8);
+  align-items: end;
+}
+
+.site-footer h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--space-3);
+}
+
+.site-footer__blurb {
+  max-width: 34ch;
+  margin: 0;
+}
+
+.site-footer__links {
+  display: grid;
+  gap: var(--space-2);
+  font-size: 15px;
+}
+
+.site-footer__colophon {
+  margin-top: 48px;
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--color-divider);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: space-between;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* — narrow viewports —
+   The grid collapses to a single column rather than shrinking: the dividers
+   keep doing the organising, so nothing needs to float or center. */
+
+@media (max-width: 900px) {
+  .work-entry__body,
+  .work-entry__body--mirrored,
+  .work-entry__body--pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Text before photograph on every entry once stacked. */
+  .work-entry__body--mirrored .frame {
+    order: 0;
+  }
+
+  .entry,
+  .entry--edu,
+  .note-row,
+  .prose-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .prose-section__body {
+    grid-column: 1;
+  }
+
+  .skills__cell {
+    padding: var(--space-6) 0;
+    border-right: 0;
+    border-top: 2px solid var(--color-divider);
+  }
+
+  .skills__cell:first-child {
+    border-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 0 var(--space-4);
+  }
+
+  /* The nav wraps to two rows here; sticking that to the top would hold about a
+     third of the viewport hostage, so let it scroll away. */
+  .site-header {
+    position: static;
+  }
+
+  .now {
+    margin-inline: calc(var(--space-4) * -1);
+    padding-inline: var(--space-4);
+  }
+
+  .work-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-8) 0;
+  }
+
+  .work-entry__index {
+    font-size: 28px;
+  }
+
+  .hero {
+    padding: 48px 0 var(--space-8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

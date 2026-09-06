@@ -1,27 +1,57 @@
-name: Github Pages Astro CI
+name: Deploy site
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
   push:
-    branches: [ main ]
-  # Allows you to run this workflow manually from the Actions tab on GitHub.
+    branches: [main]
+  # The Résumé section is generated from resume.tex in The1TrueJoe/The1TrueJoe.
+  # That repository pings this one when the résumé changes (see its
+  # notify-site.yml), so a résumé edit reaches the site within a minute.
+  repository_dispatch:
+    types: [resume-updated]
+  # Belt and braces: a nightly run picks up a résumé change even if the ping
+  # fails or its token has expired.
+  schedule:
+    - cron: "17 6 * * *"
   workflow_dispatch:
-  
-# Allow this job to clone the repo and create a page deployment
+
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Let a running deploy finish rather than cancelling it mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v2          
-      - name: Install, build, and upload your site
-        uses: withastro/action@v0
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # `prebuild` runs sync-resume, which falls back to the committed
+      # src/data/resume.json if GitHub is unreachable.
+      - name: Build
+        run: npm run build
+        env:
+          # Lets sync-resume use the GitHub API rather than the CDN-cached raw
+          # URL, and keeps it clear of the anonymous rate limit.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
   deploy:
     needs: build
@@ -32,4 +62,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4

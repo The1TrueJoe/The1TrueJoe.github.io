@@ -1,0 +1,19 @@
+{
+  "name": "Joseph Telaak",
+  "shortName": "Joseph Telaak",
+  "role": "Computer Engineer",
+  "lede": "Chief Executive Officer at Parkeze. I build things from PCB design and bare-metal firmware all the way up to distributed backend systems.",
+  "now": {
+    "label": "Now",
+    "statement": "Building ultra-low-power parking sensors and the cloud that reads them, as CEO of Parkeze."
+  },
+  "contact": {
+    "heading": "Let's talk",
+    "blurb": "Hardware, firmware, or the cloud behind it — happy to get into the details.",
+    "email": "jttelaak04@gmail.com",
+    "github": "https://github.com/The1TrueJoe",
+    "linkedin": "https://www.linkedin.com/in/jtelaak/",
+    "resume": "https://telaak.dev/The1TrueJoe/resume.pdf"
+  },
+  "ogImage": ""
+}

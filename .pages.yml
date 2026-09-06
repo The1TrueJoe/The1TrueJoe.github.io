@@ -1,0 +1,203 @@
+# Pages CMS — https://pagescms.org
+#
+# Open https://app.pagescms.org, sign in with GitHub, and pick this repository.
+# Everything below edits files in this repo directly; a save is a commit, and the
+# Pages workflow rebuilds the site from it.
+#
+# The field lists here mirror the Zod schemas in src/content.config.ts. Change
+# one and change the other, or the build will reject what the CMS wrote.
+
+media:
+  input: public/assets/images
+  output: /assets/images
+  extensions: [jpg, jpeg, png, webp, svg, gif]
+
+content:
+  - name: work
+    label: Project writeups
+    type: collection
+    path: src/content/work
+    filename: "{fields.title}.md"
+    icon: cpu
+    view:
+      fields: [order, title, category, status]
+      primary: title
+      sort: [order, title]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: order
+        label: Order
+        type: number
+        required: true
+        description: Position in Selected Work. 1 is first, and it is the number printed beside the row.
+        options:
+          min: 1
+          step: 1
+      - name: category
+        label: Category
+        type: string
+        required: true
+        description: Printed in the writeup kicker — Firmware, Hardware, Robotics, Digital design.
+      - name: status
+        label: Status
+        type: select
+        default: shipped
+        options:
+          values: [shipped, wip, archived]
+      - name: summary
+        label: Summary
+        type: text
+        required: true
+        description: One or two sentences. This is the copy on the landing page row.
+      - name: lede
+        label: Lede
+        type: text
+        description: The larger opening line on the writeup page. Leave blank to reuse the summary.
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: image
+        label: Photograph
+        type: image
+        description: Optional. An entry with a photograph gets a full-width row; entries without one pair up two-across.
+      - name: imageAlt
+        label: Image alt text
+        type: string
+      - name: imageCaption
+        label: Image caption
+        type: string
+      - name: repo
+        label: Repository URL
+        type: string
+        pattern:
+          regex: "^$|^https?://.+"
+          message: Must be a full URL starting with https://, or empty.
+      - name: live
+        label: Live URL
+        type: string
+        pattern:
+          regex: "^$|^https?://.+"
+          message: Must be a full URL starting with https://, or empty.
+      - name: draft
+        label: Draft
+        type: boolean
+        default: false
+        description: Drafts are kept in the repo but left out of the build.
+      - name: body
+        label: Writeup
+        type: rich-text
+        description: Each "Heading 2" becomes a flush-left section label in the left column.
+
+  - name: notes
+    label: Notes
+    type: collection
+    path: src/content/notes
+    filename: "{fields.title}.md"
+    icon: pen-line
+    view:
+      fields: [date, title, tags]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: summary
+        label: Summary
+        type: text
+        required: true
+        description: Shown on the notes index and used as the page description.
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: draft
+        label: Draft
+        type: boolean
+        default: false
+      - name: body
+        label: Note
+        type: rich-text
+
+settings:
+  content:
+    - name: site
+      label: Site details
+      type: file
+      path: src/data/site.json
+      icon: settings
+      fields:
+        - name: name
+          label: Name
+          type: string
+          required: true
+        - name: shortName
+          label: Short name
+          type: string
+        - name: role
+          label: Role
+          type: string
+          required: true
+          description: The small red line above the name in the hero.
+        - name: lede
+          label: Lede
+          type: text
+          required: true
+          description: The opening paragraph, and the site's meta description.
+        - name: now
+          label: Now
+          type: object
+          description: The red poster panel between the work and the résumé.
+          fields:
+            - name: label
+              label: Label
+              type: string
+            - name: statement
+              label: Statement
+              type: text
+        - name: contact
+          label: Contact
+          type: object
+          fields:
+            - name: heading
+              label: Heading
+              type: string
+            - name: blurb
+              label: Blurb
+              type: text
+            - name: email
+              label: Email
+              type: string
+            - name: github
+              label: GitHub URL
+              type: string
+            - name: linkedin
+              label: LinkedIn URL
+              type: string
+            - name: resume
+              label: Résumé PDF URL
+              type: string
+        - name: ogImage
+          label: Social share image
+          type: image
+
+# The Résumé section is not editable here on purpose: it is generated from
+# resume.tex in The1TrueJoe/The1TrueJoe by `npm run sync:resume`. Edit the
+# résumé, and this site follows on the next build.

@@ -1,0 +1,187 @@
+{
+  "source": "https://github.com/The1TrueJoe/The1TrueJoe/blob/main/resume.tex",
+  "education": [
+    {
+      "school": "University of South Carolina",
+      "location": "Columbia, SC",
+      "degree": "BSE in Computer Engineering, Leadership Distinction in Research",
+      "dates": "Aug. 2022 – Dec. 2024",
+      "bullets": [],
+      "tags": [
+        "Computer Engineering",
+        "BSE",
+        "Research Distinction"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Chief Executive Officer",
+      "dates": "Dec. 2024 – Present",
+      "org": "Parkeze Inc.",
+      "location": "Columbia, SC",
+      "bullets": [
+        "Ported the LoRaWAN gateway stack to Zephyr RTOS with custom high-availability features.",
+        "Developed sensor firmware integrating magnetometer and mmWave radar for vehicle occupancy detection.",
+        "Architected Kafka-based telemetry backend supporting real-time occupancy updates for 1000+ concurrent users.",
+        "Built real-time analytics dashboard with React, GraphQL, and TimescaleDB.",
+        "Created CI/CD pipeline for integration testing and blue/green deployment on Kubernetes."
+      ],
+      "tags": [
+        "IoT",
+        "LoRaWAN",
+        "Zephyr RTOS",
+        "Kafka",
+        "React",
+        "GraphQL",
+        "TimescaleDB",
+        "Kubernetes",
+        "PCB Design"
+      ]
+    },
+    {
+      "role": "Research Assistant",
+      "dates": "Feb. 2023 – Dec. 2024",
+      "org": "USC Systems Research on X Lab",
+      "location": "Columbia, SC",
+      "bullets": [
+        "Developed firmware for live data streaming from TI IWR series 77–81 GHz mmWave radar SoCs.",
+        "Designed FPGA-based infrastructure for multi-radar synchronization and high-throughput capture.",
+        "Implemented contactless vital sign monitoring via chest-wall vibration analysis validated against ECG.",
+        "Co-authored research on mmWave radar algorithms for 3D vehicle and pedestrian detection.",
+        "Secured research funding through competitive grant proposals."
+      ],
+      "tags": [
+        "mmWave Radar",
+        "FPGA",
+        "Embedded C",
+        "Python",
+        "MATLAB",
+        "Signal Processing"
+      ]
+    },
+    {
+      "role": "Project Lead",
+      "dates": "Jan. 2022 – Feb. 2023",
+      "org": "SCGSSM Autonomous Golf Cart",
+      "location": "Hartsville, SC",
+      "bullets": [
+        "Engineered ADAS control systems for steering, throttle, and braking actuation.",
+        "Designed custom Nvidia Jetson carrier board with analog video capture and ADC interfacing.",
+        "Implemented real-time computer vision pipeline for obstacle detection and lane tracking.",
+        "Integrated CAN bus and low-level actuator control for drive-by-wire operation."
+      ],
+      "tags": [
+        "Nvidia Jetson",
+        "ROS",
+        "Computer Vision",
+        "PCB Design",
+        "C++",
+        "CAN Bus"
+      ]
+    }
+  ],
+  "leadership": [
+    {
+      "org": "FIRST Robotics",
+      "location": "Columbia, SC",
+      "role": "FIRST Technical Advisor, Judge, Robot Inspector",
+      "dates": "Jan. 2022 – May 2025",
+      "bullets": [],
+      "tags": []
+    }
+  ],
+  "projects": [
+    {
+      "name": "LLM Voice Assistant",
+      "description": "Far-field mic array with XMOS DSP, Zephyr RTOS on i.MXRT, ESP32 Wi-Fi NIC, multi-chip OTA, and real-time audio streaming to an LLM inference pipeline."
+    },
+    {
+      "name": "Agentic Audio Streamer",
+      "description": "Multi-room audio system using SigmaDSP, DACs, Raspberry Pi CM5, Spotify Connect, and a custom LLM control API."
+    },
+    {
+      "name": "PiSwitch",
+      "description": "7-port managed router/switch with custom ASIC controller, VLAN support, web UI, and out-of-band management."
+    },
+    {
+      "name": "Multi-Core Nios II Image Scaler",
+      "description": "Multi-core Nios II FPGA image scaler in Quartus with custom DMA fabric, SDRAM frame buffering, and hardware-accelerated bilinear interpolation for real-time video processing."
+    },
+    {
+      "name": "RISC-V CPU",
+      "description": "5-stage pipelined RISC-V CPU with GPIO peripheral support implemented on FPGA in SystemVerilog."
+    },
+    {
+      "name": "Pick-n-Place Machine",
+      "description": "Desktop PCB assembly machine with OpenPNP vision alignment and automated SMT placement."
+    }
+  ],
+  "skills": [
+    {
+      "label": "Languages",
+      "items": [
+        "C/C++",
+        "Python",
+        "Rust",
+        "Java",
+        "JavaScript/TypeScript",
+        "MATLAB",
+        "Lua",
+        "SystemVerilog"
+      ]
+    },
+    {
+      "label": "Embedded",
+      "items": [
+        "Zephyr RTOS",
+        "Yocto",
+        "Buildroot",
+        "FreeRTOS",
+        "LoRaWAN",
+        "I2C",
+        "SPI",
+        "UART",
+        "CAN",
+        "USB"
+      ]
+    },
+    {
+      "label": "Hardware",
+      "items": [
+        "Altium",
+        "KiCad",
+        "Quartus",
+        "Platform Designer/Qsys",
+        "STM32Cube",
+        "MCUXpresso",
+        "mmWave Studio",
+        "JTAG",
+        "Oscilloscope"
+      ]
+    },
+    {
+      "label": "Systems",
+      "items": [
+        "Linux",
+        "Kubernetes",
+        "Docker",
+        "Kafka",
+        "GraphQL",
+        "PostgreSQL",
+        "CI/CD",
+        "Git"
+      ]
+    },
+    {
+      "label": "Memberships",
+      "items": [
+        "IEEE Eta Kappa Nu (HKN)",
+        "IEEE MTTS",
+        "IEEE",
+        "ACM",
+        "AIAA"
+      ]
+    }
+  ]
+}

@@ -1,51 +1,214 @@
 ---
-import { info } from "@data";
+import { getCollection } from "astro:content";
 
-import Layout from "@layouts/Layout.astro";
-import Hero from "@components/home/Hero.astro";
-import Experience from "@components/home/Experience.astro";
-import Skills from "@components/home/Skills.astro";
-import ProjectsWrapper from "@components/general/ProjectsWrapper.astro";
-import MetaHead from "@components/general/MetaHead.astro";
+import Base from "@layouts/Base.astro";
+import WorkEntry from "@components/WorkEntry.astro";
+import Tags from "@components/Tags.astro";
+import site from "@data/site.json";
+import resume from "@data/resume.json";
 
-const featureProjects = info.projects.filter((project, index) => {
-  return project.isFeatured && index < 6;
-});
+const work = (await getCollection("work", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+/**
+ * Lay the run of writeups out as the design does: an entry with a photograph
+ * takes a full row (alternating which side the photograph sits on), and a run
+ * of entries without one pairs up two-across so the grid never shows a hole.
+ */
+type Row = { entries: typeof work; modifier: string; numbers: number[] };
+
+const rows: Row[] = [];
+let position = 0;
+let illustrated = 0;
+
+for (let i = 0; i < work.length; i++) {
+  const entry = work[i];
+
+  if (entry.data.image) {
+    rows.push({
+      entries: [entry],
+      modifier: illustrated++ % 2 === 1 ? "work-entry__body--mirrored" : "",
+      numbers: [++position],
+    });
+    continue;
+  }
+
+  const next = work[i + 1];
+  if (next && !next.data.image) {
+    rows.push({
+      entries: [entry, next],
+      modifier: "work-entry__body--pair",
+      numbers: [++position, ++position],
+    });
+    i++;
+    continue;
+  }
+
+  // A last entry with no partner keeps the pair grid rather than stretching to
+  // the full row, so its text column stays aligned with the rows above it.
+  rows.push({ entries: [entry], modifier: "work-entry__body--pair", numbers: [++position] });
+}
+
+const pad = (n: number) => String(n).padStart(2, "0");
+/** Spelled out, to sit as a label rather than a statistic. */
+const WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+  "eleven", "twelve"];
+const count = WORDS[work.length] ?? String(work.length);
+
+/** Link a résumé project to its writeup when the site has one. */
+const writeupFor = (name: string) =>
+  work.find((entry) => entry.data.title.toLowerCase() === name.toLowerCase());
 ---
 
-<!DOCTYPE html>
-<html lang="en" class="dark">
-  <head>
-    <MetaHead
-      title={"Portfolio"}
-      description={info.about}
-      ogImageUrl={"/assets/images/profile.png"}
-    />
-  </head>
+<Base title={site.name} description={site.lede} current="work">
+  <section class="hero" id="top">
+    <div class="eyebrow hero__eyebrow">{site.role}</div>
+    <h1 class="hero__name">
+      {site.name.split(" ").map((part, i) => (i === 0 ? part.toUpperCase() : [<br />, part.toUpperCase()]))}
+    </h1>
+    <p class="hero__lede">{site.lede}</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#work">See the work ↓</a>
+      <a class="btn btn-secondary" href={site.contact.github} target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-secondary" href={site.contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-secondary" href={`mailto:${site.contact.email}`}>Email</a>
+    </div>
+  </section>
 
-  <body>
-    <Layout>
-      <Hero name={info.name} about={info.about} />
-      <div id="experience">
-        <Experience title={"EXPERIENCE"} details={info.experience} />
-        <Experience title={"EDUCATION"} details={info.education} />
-      </div>
-      <div id="skills">
-        <Skills title={"SKILLS"} skills={info.skills} />
-      </div>
-      <Experience title={"LEADERSHIP"} details={info.volunteering} />
-      <div id="projects">
-        <section class="mt-24 mb-8">
-          <div class="section-header">
-            <span class="mono-label">Featured Projects</span>
-            <div class="flex-1"></div>
-            <a href="/projects" class="btn-ghost text-xs">
-              View all &rarr;
-            </a>
+  <section class="section" id="work">
+    <div class="section-head">
+      <h2>SELECTED WORK</h2>
+      <div class="overline text-muted">{count} {work.length === 1 ? "project" : "projects"}</div>
+    </div>
+
+    {
+      rows.map((row) => (
+        <article class="work-entry">
+          <div class="work-entry__index">
+            {row.numbers.map((n, i) => (i === 0 ? pad(n) : [<br />, pad(n)]))}
           </div>
-          <ProjectsWrapper projects={featureProjects} />
-        </section>
-      </div>
-    </Layout>
-  </body>
-</html>
+          <div class:list={["work-entry__body", row.modifier]}>
+            {row.entries.map((entry) => (
+              <WorkEntry entry={entry} />
+            ))}
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="now">
+    <div class="now__inner">
+      <div class="eyebrow">{site.now.label}</div>
+      <p>{site.now.statement}</p>
+    </div>
+  </section>
+
+  <section class="section" id="resume">
+    <div class="section-head">
+      <h2>RÉSUMÉ</h2>
+      <a class="btn btn-secondary" href={site.contact.resume} target="_blank" rel="noopener">
+        Download PDF ↓
+      </a>
+    </div>
+
+    <h6 class="subhead">Experience</h6>
+    {
+      resume.experience.map((job, i) => (
+        <div class:list={["entry", i === resume.experience.length - 1 && "entry--last"]}>
+          <div class="entry__when">{job.dates}</div>
+          <div>
+            <h4>
+              {job.org} — {job.role}
+            </h4>
+            <p class="entry__where text-muted">{job.location}</p>
+            {job.bullets.length > 0 && (
+              <ul>
+                {job.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            )}
+            <Tags items={job.tags} />
+          </div>
+        </div>
+      ))
+    }
+
+    <h6 class="subhead">Education</h6>
+    {
+      resume.education.map((school, i) => (
+        <div
+          class:list={["entry", "entry--edu", i === resume.education.length - 1 && "entry--last"]}
+        >
+          <div class="entry__when">{school.dates}</div>
+          <div>
+            <h4>{school.school}</h4>
+            <p>{school.degree}</p>
+            {school.bullets.length > 0 && (
+              <ul>
+                {school.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div class="entry__aside">
+            {school.tags.map((tag, t) => (
+              <span class:list={["tag", t === 0 ? "tag-accent" : "tag-outline"]}>{tag}</span>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+
+    <h6 class="subhead">Skills</h6>
+    <div class="skills">
+      {
+        resume.skills.map((group) => (
+          <div class="skills__cell">
+            <div class="overline skills__label text-muted">{group.label}</div>
+            <Tags items={group.items} />
+          </div>
+        ))
+      }
+    </div>
+
+    <h6 class="subhead">Selected projects</h6>
+    {
+      resume.projects.map((project, i) => {
+        const writeup = writeupFor(project.name);
+        return (
+          <div class:list={["entry", "entry--service", i === resume.projects.length - 1 && "entry--last"]}>
+            <div class="entry__when">
+              {writeup ? <a href={`/work/${writeup.id}`}>{project.name}</a> : project.name}
+            </div>
+            <div>
+              <p style="margin-top: 0">{project.description}</p>
+            </div>
+          </div>
+        );
+      })
+    }
+
+    <h6 class="subhead">Leadership</h6>
+    {
+      resume.leadership.map((role, i) => (
+        <div
+          class:list={[
+            "entry",
+            "entry--service",
+            i === resume.leadership.length - 1 && "entry--last",
+          ]}
+        >
+          <div class="entry__when">{role.dates}</div>
+          <div>
+            <h4>{role.org}</h4>
+            <p>{role.role}</p>
+          </div>
+        </div>
+      ))
+    }
+  </section>
+</Base>

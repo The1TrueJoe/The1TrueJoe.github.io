@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Tags from "@components/Tags.astro";
+
+interface Props {
+  entry: CollectionEntry<"work">;
+}
+
+const { entry } = Astro.props;
+const { title, summary, tags, image, imageAlt } = entry.data;
+---
+
+{/* Heading first in source order on every row; mirrored rows move the
+    photograph into the left column with `order`, so the reading order and the
+    stacked layout stay the same either way. */}
+<div>
+  <h3>{title}</h3>
+  <p>{summary}</p>
+  <Tags items={tags} />
+  <a class="btn btn-secondary" href={`/work/${entry.id}`}>Read the writeup →</a>
+</div>
+
+{
+  image && (
+    <figure class="frame grayscale">
+      <img src={image} alt={imageAlt ?? title} loading="lazy" decoding="async" />
+    </figure>
+  )
+}

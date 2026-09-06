@@ -1,0 +1,34 @@
+---
+import Meta from "@components/Meta.astro";
+import SiteHeader from "@components/SiteHeader.astro";
+import SiteFooter from "@components/SiteFooter.astro";
+
+import "@styles/modernist.css";
+import "@styles/site.css";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  type?: "website" | "article";
+  current?: "work" | "resume" | "notes";
+  /** The landing page carries its own contact block as the footer. */
+  footer?: boolean;
+}
+
+const { title, description, ogImage, type, current, footer = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Meta title={title} description={description} ogImage={ogImage} type={type} />
+  </head>
+  <body>
+    <div class="shell">
+      <SiteHeader current={current} />
+      <slot />
+      {footer && <SiteFooter />}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+---
+import site from "@data/site.json";
+
+/**
+ * Home-relative anchors so the header works from a writeup as well as the
+ * landing page; `current` marks the section this page belongs to.
+ */
+interface Props {
+  current?: "work" | "resume" | "notes";
+}
+
+const { current } = Astro.props;
+
+const links = [
+  { href: "/#work", label: "Work", key: "work" },
+  { href: "/#resume", label: "Résumé", key: "resume" },
+  { href: "/notes", label: "Notes", key: "notes" },
+  { href: "/#contact", label: "Contact", key: "contact" },
+];
+---
+
+<header class="site-header">
+  <a class="site-header__brand" href="/">{site.name.toUpperCase()}</a>
+  <nav class="site-nav" aria-label="Primary">
+    {
+      links.map((link) => (
+        <a href={link.href} aria-current={link.key === current ? "page" : undefined}>
+          {link.label}
+        </a>
+      ))
+    }
+    <a
+      class="btn btn-primary"
+      href={site.contact.resume}
+      target="_blank"
+      rel="noopener"
+    >
+      RESUME PDF ↓
+    </a>
+  </nav>
+</header>

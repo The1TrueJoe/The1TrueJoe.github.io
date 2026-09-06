@@ -1,0 +1,32 @@
+---
+import site from "@data/site.json";
+
+const { contact } = site;
+const year = new Date().getFullYear();
+
+/** Show the bare host + path, the way the address is actually spoken. */
+const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+---
+
+<footer class="site-footer" id="contact">
+  <div class="site-footer__grid">
+    <div>
+      <h2>{contact.heading.toUpperCase()}</h2>
+      <p class="site-footer__blurb">{contact.blurb}</p>
+    </div>
+    <div class="site-footer__links">
+      <a href={`mailto:${contact.email}`}>{contact.email}</a>
+      <a href={contact.github} target="_blank" rel="noopener">{bare(contact.github)}</a>
+      <a href={contact.linkedin} target="_blank" rel="noopener">{bare(contact.linkedin)}</a>
+    </div>
+    <div>
+      <a class="btn btn-primary" href={contact.resume} target="_blank" rel="noopener">
+        Résumé PDF ↓
+      </a>
+    </div>
+  </div>
+  <div class="site-footer__colophon text-muted">
+    <span>{site.name}</span>
+    <span>© {year}</span>
+  </div>
+</footer>
