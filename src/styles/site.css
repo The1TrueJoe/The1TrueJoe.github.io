@@ -23,9 +23,10 @@ a:hover {
 /* — page shell — */
 
 .shell {
+  --shell-pad: var(--space-6);
   max-width: 1180px;
   margin: 0 auto;
-  padding: 0 var(--space-6);
+  padding: 0 var(--shell-pad);
 }
 
 .eyebrow {
@@ -53,17 +54,25 @@ a:hover {
 
 /* — header — */
 
+/* The background bleeds out to the shell's edge so full-bleed content — the Now
+   panel — passes underneath it rather than out either side of it. The rule sits
+   on the inner element, level with every other divider on the page. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 20;
+  background: var(--color-bg);
+  margin-inline: calc(var(--shell-pad) * -1);
+  padding-inline: var(--shell-pad);
+}
+
+.site-header__inner {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: var(--space-4) 20px;
   justify-content: space-between;
   padding: var(--space-4) 0;
-  background: var(--color-bg);
   border-bottom: 2px solid var(--color-divider);
 }
 
@@ -247,8 +256,8 @@ a:hover {
 .now {
   background: var(--color-accent);
   color: var(--color-bg);
-  margin: 56px calc(var(--space-6) * -1) 0;
-  padding: 56px var(--space-6);
+  margin: 56px calc(var(--shell-pad) * -1) 0;
+  padding: 56px var(--shell-pad);
 }
 
 .now__inner {
@@ -612,18 +621,13 @@ a:hover {
 
 @media (max-width: 640px) {
   .shell {
-    padding: 0 var(--space-4);
+    --shell-pad: var(--space-4);
   }
 
   /* The nav wraps to two rows here; sticking that to the top would hold about a
      third of the viewport hostage, so let it scroll away. */
   .site-header {
     position: static;
-  }
-
-  .now {
-    margin-inline: calc(var(--space-4) * -1);
-    padding-inline: var(--space-4);
   }
 
   .work-entry {

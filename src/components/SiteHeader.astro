@@ -19,23 +19,29 @@ const links = [
 ];
 ---
 
+{/* The outer element carries the sticky background and bleeds out to the shell's
+    edge, so full-bleed content — the Now panel — passes cleanly underneath it.
+    The inner element holds the rule, which stays on the measure with every
+    other divider on the page. */}
 <header class="site-header">
-  <a class="site-header__brand" href="/">{site.name.toUpperCase()}</a>
-  <nav class="site-nav" aria-label="Primary">
-    {
-      links.map((link) => (
-        <a href={link.href} aria-current={link.key === current ? "page" : undefined}>
-          {link.label}
-        </a>
-      ))
-    }
-    <a
-      class="btn btn-primary"
-      href={site.contact.resume}
-      target="_blank"
-      rel="noopener"
-    >
-      RESUME PDF ↓
-    </a>
-  </nav>
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">{site.name.toUpperCase()}</a>
+    <nav class="site-nav" aria-label="Primary">
+      {
+        links.map((link) => (
+          <a href={link.href} aria-current={link.key === current ? "page" : undefined}>
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        class="btn btn-primary"
+        href={site.contact.resume}
+        target="_blank"
+        rel="noopener"
+      >
+        RESUME PDF ↓
+      </a>
+    </nav>
+  </div>
 </header>
