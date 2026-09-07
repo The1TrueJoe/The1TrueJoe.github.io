@@ -4,18 +4,17 @@ on:
   push:
     branches: [main]
   # The Résumé section comes from the resume.json that The1TrueJoe/The1TrueJoe
-  # publishes alongside its PDF. That repository pings this one once the new
-  # file is actually live, so a résumé edit reaches the site within a minute.
-  repository_dispatch:
-    types: [resume-updated]
-  # Belt and braces: a nightly run picks up a résumé change even if the ping
-  # fails or its token has expired.
+  # publishes alongside its PDF. Nothing can trigger a build here from over
+  # there without handing out a credential, so this polls instead: hourly, and
+  # cheap, because the `check` job below stops the run in a few seconds unless
+  # the résumé is genuinely newer than what is deployed.
   schedule:
-    - cron: "17 6 * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: read
+  deployments: read
   pages: write
   id-token: write
 
@@ -25,7 +24,50 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # A scheduled run has nothing to do unless the résumé was regenerated after
+  # the last deploy. Checking that costs two HTTP requests, so the hourly runs
+  # cost seconds and produce no deployment. Every other trigger builds.
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      stale: ${{ steps.check.outputs.stale }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RESUME_URL: https://telaak.dev/The1TrueJoe/resume.json
+        run: |
+          set -euo pipefail
+
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+            echo "${{ github.event_name }}: building"
+            exit 0
+          fi
+
+          # Cache-busted: Pages sits behind a CDN that will otherwise hand back
+          # the résumé from before the last deploy.
+          resume=$(curl -fsSL "$RESUME_URL?t=$(date +%s)" | jq -r '.generatedAt // empty')
+          deployed=$(gh api             "repos/${{ github.repository }}/deployments?environment=github-pages&per_page=1"             --jq '.[0].created_at // empty')
+
+          # If either is unavailable, build rather than risk going stale.
+          if [ -z "$resume" ] || [ -z "$deployed" ]; then
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+            echo "could not compare (resume='$resume' deployed='$deployed'): building"
+            exit 0
+          fi
+
+          if [ "$(date -d "$resume" +%s)" -gt "$(date -d "$deployed" +%s)" ]; then
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+            echo "résumé $resume is newer than deploy $deployed: building"
+          else
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+            echo "résumé $resume is not newer than deploy $deployed: nothing to do"
+          fi
+
   build:
+    needs: check
+    if: needs.check.outputs.stale == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

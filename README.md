@@ -91,11 +91,22 @@ To try a change against a local file before pushing it:
 npm run sync:resume -- ../The1TrueJoe/resume.json
 ```
 
-Once the résumé's Pages deploy has published the new JSON, that repository dispatches
-`resume-updated` here and the site rebuilds within a minute. That ping needs a repository
-secret `SITE_DISPATCH_TOKEN` **in the résumé repository** — a fine-grained PAT with
-*Actions: read & write* on this repository. Without it the nightly run picks the change
-up instead, and the deploy workflow can be run on demand from the Actions tab.
+### Picking up a résumé change
+
+Nothing in the résumé repository can start a build here: triggering a workflow across
+repositories means handing out a credential with write access, which was not worth it for
+a file that changes a few times a year. So this repository polls instead.
+
+The deploy workflow runs hourly, and its first job compares the published résumé's
+`generatedAt` against the timestamp of the last Pages deployment. If the résumé is not
+newer, the run stops there — a few seconds, no build, no deployment. Only a genuinely
+changed résumé gets past it. Pushes and manual runs always build.
+
+Scheduled runs still appear in the Actions tab; GitHub has no way to hide them. They are
+just cheap and they do not deploy.
+
+To pick a change up immediately rather than waiting for the hour, run the workflow from
+the Actions tab.
 
 ## Layout
 
@@ -143,5 +154,5 @@ organising.
 ## Deploying
 
 Pushing to `main` builds and publishes to GitHub Pages
-([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)). The same workflow runs
-on a résumé-change ping, nightly, and on demand.
+([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)). The same workflow polls
+hourly for a changed résumé and can be run on demand.
