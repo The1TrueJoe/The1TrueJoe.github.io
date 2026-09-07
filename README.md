@@ -4,9 +4,9 @@ My personal site. Astro, no framework runtime, static output to GitHub Pages.
 
 Two things about it are worth knowing before you change anything:
 
-1. **The Résumé section is generated, not written.** It is parsed out of `resume.tex`
-   in [The1TrueJoe/The1TrueJoe](https://github.com/The1TrueJoe/The1TrueJoe) at build
-   time. Editing it here does nothing; edit the résumé.
+1. **The Résumé section is generated, not written.** It comes from `resume.tex` in
+   [The1TrueJoe/The1TrueJoe](https://github.com/The1TrueJoe/The1TrueJoe). Editing it
+   here does nothing; edit the résumé.
 2. **The look is a design system, not ad-hoc CSS.** `src/styles/modernist.css` holds the
    tokens and component classes. Take colors, type, spacing, radius and shadow from its
    variables — never a raw hex or px value the tokens already carry.
@@ -60,30 +60,42 @@ a missing file.
 
 ## Résumé sync
 
-`scripts/sync-resume.mjs` fetches `resume.tex`, parses the `\resume*` macros defined at
-the top of it, and writes `src/data/resume.json`. It reads the GitHub API rather than
-`raw.githubusercontent.com`, which is CDN-cached and will serve a copy several minutes
-stale.
+The site does not parse LaTeX. `resume.tex` in
+[The1TrueJoe/The1TrueJoe](https://github.com/The1TrueJoe/The1TrueJoe) is tagged with
+`%%:` directives that say which of its macros carry which fields, and that repository's
+Pages workflow runs [resume-tex-action](https://github.com/The1TrueJoe/resume-tex-action)
+to publish `resume.json` next to the compiled PDF:
 
-It understands one addition to the LaTeX: a `% tags: a, b, c` comment directly under a
-`\resumeSubheading` becomes that entry's tag row on the site. LaTeX ignores comments, so
-the PDF never changes.
-
-To test a résumé edit before pushing it, pass a path:
-
-```bash
-npm run sync:resume -- ../The1TrueJoe/resume.tex
+```
+resume.tex ──┬─ latex ──────────────→ telaak.dev/The1TrueJoe/resume.pdf
+             └─ resume-tex-action ──→ telaak.dev/The1TrueJoe/resume.json
+                                              │
+                                              └─→ sync-resume → src/data/resume.json
 ```
 
-The résumé lives in another repository, so a push there cannot trigger a build here on
-its own. `The1TrueJoe/The1TrueJoe` sends a `repository_dispatch` of type `resume-updated`
-whenever `resume.tex` changes, which this workflow listens for — a résumé edit reaches
-the site within a minute or so.
+`scripts/sync-resume.mjs` fetches that JSON and writes `src/data/resume.json`. Extraction
+happens once, at the source, so the page and the PDF are typeset from the same file and
+cannot disagree. The fetch is cache-busted with a query string — the résumé deploy
+finishes moments before this build starts, and Pages' CDN would otherwise serve the
+previous copy.
 
-That ping needs a repository secret `SITE_DISPATCH_TOKEN` **in the résumé repository** — a
-fine-grained PAT with *Actions: read & write* on this repository. If it is missing, the
-ping is skipped and the nightly run picks the change up instead; the deploy workflow can
-also be run on demand from the Actions tab.
+Adding an entry to the résumé means tagging it there, not editing anything here. The
+directive language is documented in
+[resume-tex-action](https://github.com/The1TrueJoe/resume-tex-action#tagging-a-résumé);
+the short version is that `%%: section`, `%%: entry`, `%%: item` and `%%: tags` comments
+declare the mapping, and LaTeX ignores all of them.
+
+To try a change against a local file before pushing it:
+
+```bash
+npm run sync:resume -- ../The1TrueJoe/resume.json
+```
+
+Once the résumé's Pages deploy has published the new JSON, that repository dispatches
+`resume-updated` here and the site rebuilds within a minute. That ping needs a repository
+secret `SITE_DISPATCH_TOKEN` **in the résumé repository** — a fine-grained PAT with
+*Actions: read & write* on this repository. Without it the nightly run picks the change
+up instead, and the deploy workflow can be run on demand from the Actions tab.
 
 ## Layout
 
@@ -92,7 +104,8 @@ public/assets/
   fonts/Archivo/     self-hosted variable font — no third-party requests
   images/            photographs; the CMS media library points here (empty)
 scripts/
-  sync-resume.mjs    resume.tex -> src/data/resume.json
+  sync-resume.mjs        fetch the published résumé -> src/data/resume.json
+  rehype-prose-sections.mjs  group each `##` with its prose for the writeup layout
 src/
   components/        header, footer, meta, tags, work row
   content/
@@ -101,7 +114,7 @@ src/
   content.config.ts  collection schemas — keep in step with .pages.yml
   data/
     site.json        editable site details
-    resume.json      generated; do not edit by hand
+    resume.json      generated from the résumé; do not edit by hand
   layouts/Base.astro
   pages/
     index.astro      hero, selected work, Now, résumé, contact
