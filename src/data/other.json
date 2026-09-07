@@ -1,0 +1,48 @@
+{
+  "heading": "Other projects",
+  "note": "No writeup yet",
+  "projects": [
+    {
+      "name": "Multi-Core Nios II Image Scaler",
+      "description": "Multi-core Nios II image scaler on an FPGA with a custom DMA fabric, SDRAM frame buffering, and hardware-accelerated bilinear interpolation for real-time video.",
+      "tags": ["Nios II", "Quartus", "FPGA", "SDRAM"],
+      "repo": ""
+    },
+    {
+      "name": "sgx545-ce",
+      "description": "Linux driver for the Imagination PowerVR SGX545 GPU, as found in the Intel Atom CE5310. The graphics half of getting a modern kernel onto Control4 hardware.",
+      "tags": ["C", "Linux Kernel", "PowerVR"],
+      "repo": "https://github.com/The1TrueJoe/sgx545-ce"
+    },
+    {
+      "name": "t2i-zephyr",
+      "description": "Custom Zephyr firmware for the RTI T2i, a Zigbee and RF remote with no open toolchain of its own.",
+      "tags": ["Zephyr RTOS", "C", "Zigbee"],
+      "repo": "https://github.com/The1TrueJoe/t2i-zephyr"
+    },
+    {
+      "name": "openSpeakerPoint",
+      "description": "Custom Buildroot firmware for the 2006 Control4 SpeakerPoint, bringing a twenty-year-old in-wall speaker endpoint back under its owner's control.",
+      "tags": ["Buildroot", "C", "Linux"],
+      "repo": "https://github.com/The1TrueJoe/openSpeakerPoint"
+    },
+    {
+      "name": "CEC-Dongle",
+      "description": "An HDMI-CEC dongle for Control4, so a controller can drive displays that only speak CEC.",
+      "tags": ["C++", "HDMI-CEC", "PCB Design"],
+      "repo": "https://github.com/The1TrueJoe/CEC-Dongle"
+    },
+    {
+      "name": "access-controller",
+      "description": "An ESP32 access controller for my garage door, with logging and remote entry.",
+      "tags": ["ESP32", "C", "Access Control"],
+      "repo": "https://github.com/The1TrueJoe/access-controller"
+    },
+    {
+      "name": "keycloak-twilio-verify",
+      "description": "A Keycloak service provider for the Twilio Verify API, adding phone-based verification to an IAM that ships without it.",
+      "tags": ["Java", "Keycloak", "Twilio"],
+      "repo": "https://github.com/The1TrueJoe/keycloak-twilio-verify"
+    }
+  ]
+}

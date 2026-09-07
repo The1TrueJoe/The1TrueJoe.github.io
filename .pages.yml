@@ -198,6 +198,47 @@ settings:
           label: Social share image
           type: image
 
-# The Résumé section is not editable here on purpose: it is generated from
-# resume.tex in The1TrueJoe/The1TrueJoe by `npm run sync:resume`. Edit the
-# résumé, and this site follows on the next build.
+    - name: other
+      label: Other projects
+      type: file
+      path: src/data/other.json
+      icon: boxes
+      fields:
+        - name: heading
+          label: Heading
+          type: string
+          required: true
+        - name: note
+          label: Note
+          type: string
+          description: The small grey label to the right of the heading.
+        - name: projects
+          label: Projects
+          type: object
+          list: true
+          fields:
+            - name: name
+              label: Name
+              type: string
+              required: true
+            - name: description
+              label: Description
+              type: text
+              required: true
+            - name: tags
+              label: Tags
+              type: string
+              list: true
+            - name: repo
+              label: Repository URL
+              type: string
+              description: Optional. Given one, the name links to it.
+              pattern:
+                regex: "^$|^https?://.+"
+                message: Must be a full URL starting with https://, or empty.
+
+# The Résumé section is not editable here on purpose: it comes from resume.tex in
+# The1TrueJoe/The1TrueJoe, which publishes resume.json for this site to fetch.
+# Edit the résumé, and this site follows within a minute. The résumé's own
+# "Selected Projects" list is deliberately not rendered — Selected Work and
+# Other projects cover that ground here.
