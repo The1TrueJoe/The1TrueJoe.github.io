@@ -93,20 +93,26 @@ npm run sync:resume -- ../The1TrueJoe/resume.json
 
 ### Picking up a résumé change
 
-Nothing in the résumé repository can start a build here: triggering a workflow across
-repositories means handing out a credential with write access, which was not worth it for
-a file that changes a few times a year. So this repository polls instead.
+When the résumé repository finishes publishing a new `resume.json`, it force-pushes an
+annotated tag called `resume-latest` here over SSH, and the `tags: [resume-latest]`
+trigger on the deploy workflow rebuilds the site. A résumé edit is live within a minute
+or so.
 
-The deploy workflow runs hourly, and its first job compares the published résumé's
-`generatedAt` against the timestamp of the last Pages deployment. If the résumé is not
-newer, the run stops there — a few seconds, no build, no deployment. Only a genuinely
-changed résumé gets past it. Pushes and manual runs always build.
+Three details make that work, each of which is a trap if you change it:
 
-Scheduled runs still appear in the Actions tab; GitHub has no way to hide them. They are
-just cheap and they do not deploy.
+- It is a **tag**, not a commit, so nothing lands in this repository's history.
+- It must be **annotated**. A lightweight tag re-pushed to the commit it already points
+  at is a no-op — git reports nothing to do and no push event fires. An annotated tag
+  builds a fresh tag object each time, so the ref really changes.
+- It is pushed with a **deploy key**, not `GITHUB_TOKEN`. Pushes made with `GITHUB_TOKEN`
+  deliberately do not trigger workflows; pushes made with a deploy key do. A deploy key
+  also cannot call the REST API, which is why this is a push rather than a
+  `repository_dispatch`.
 
-To pick a change up immediately rather than waiting for the hour, run the workflow from
-the Actions tab.
+The key's public half is a write-enabled deploy key on this repository; its private half
+is the `SITE_DEPLOY_KEY` secret in the résumé repository. Deploy keys do not expire, so
+there is nothing to rotate. If it is ever removed, the résumé repository says so and
+stops, and the site can be rebuilt by hand from the Actions tab.
 
 ## Layout
 
@@ -154,5 +160,5 @@ organising.
 ## Deploying
 
 Pushing to `main` builds and publishes to GitHub Pages
-([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)). The same workflow polls
-hourly for a changed résumé and can be run on demand.
+([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)). The same workflow runs
+when the résumé repository pushes `resume-latest`, and on demand.
